@@ -1,0 +1,50 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "whatau.aidlbridge"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.cpl.fwp"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        project.ext.set("archivesBaseName", "CPL_Feed_and_Weather_Plugin")
+    }
+
+    buildTypes {
+        optimized {
+            initWith debug
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),
+                    'proguard-rules.pro'
+        }
+    }
+
+    productFlavors {
+        aidlbridge {
+            applicationId 'whatau.aidlbridge'
+            flavorDimensions 'default'
+        }
+
+        pixelbridge {
+            applicationId 'com.google.android.apps.nexuslauncher'
+            flavorDimensions 'default'
+        }
+    }
+
+    sourceSets {
+        pixelbridge {
+            java.srcDirs = ['src/pixel/java']
+            res.srcDirs = ['src/pixel/res']
+            manifest.srcFile 'src/pixel/AndroidManifest.xml'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
