@@ -28,7 +28,9 @@ android {
         }
 
         pixelbridge {
-            applicationId 'com.google.android.apps.nexuslauncher'
+            applicationId 'ru.cpl.feed'
+            versionName "1"
+            project.ext.set("archivesBaseName", "CPL_Feed_Plugin")
             flavorDimensions 'default'
         }
     }
